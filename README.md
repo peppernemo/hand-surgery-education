@@ -2,7 +2,7 @@
 
 Teaching handouts for hand surgery residents and fellows.
 
-**Dr. Janos Barrera** | NYU Langone Orthopedic Surgery
+**Dr. Janos Barrera** | NYU Langone Orthopedic Surgery & Plastic Surgery
 
 ## Handouts
 

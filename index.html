@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Surgery Education — Dr. Barrera</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        header {
+            text-align: center;
+            padding: 2rem 0 1.5rem;
+            border-bottom: 2px solid #16213e;
+            margin-bottom: 2rem;
+        }
+        header h1 {
+            font-size: 1.6rem;
+            color: #16213e;
+            margin-bottom: 0.3rem;
+        }
+        header p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        .handout-list {
+            list-style: none;
+        }
+        .handout-item {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: box-shadow 0.2s;
+        }
+        .handout-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .handout-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #1a1a2e;
+        }
+        .handout-subtitle {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 0.2rem;
+        }
+        .btn {
+            display: inline-block;
+            background: #16213e;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #0f3460;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            color: #999;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hand Surgery Education</h1>
+            <p>Resident &amp; Fellow Teaching Handouts &mdash; Dr. Janos Barrera, NYU</p>
+        </header>
+
+        <ul class="handout-list">
+            <li class="handout-item">
+                <div>
+                    <div class="handout-title">Compressive Neuropathies of the Upper Extremity</div>
+                    <div class="handout-subtitle">CTS, cubital tunnel, radial tunnel, PIN, EMG basics</div>
+                </div>
+                <a href="handouts/compressive-neuropathies.pdf" class="btn">View PDF</a>
+            </li>
+        </ul>
+
+        <footer>
+            NYU Langone Orthopedic Surgery &mdash; Division of Hand Surgery
+        </footer>
+    </div>
+</body>
+</html>

@@ -30,8 +30,12 @@ code { background: #f0f0f5; padding: 1px 4px; border-radius: 3px; font-size: 0.8
 blockquote { background: #eef3fb; border-left: 4px solid #0f3460; padding: 0.7rem 1rem; margin: 1rem 0; border-radius: 4px; font-size: 0.94rem; }
 blockquote strong { color: #0f3460; }
 figure { margin: 1.4rem auto; max-width: 360px; text-align: center; }
-figure img, p img { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 4px; }
+figure img, p img { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 4px; cursor: zoom-in; }
 figcaption { font-size: 0.78rem; color: #666; font-style: italic; text-align: left; margin-top: 0.4rem; line-height: 1.4; }
+figcaption::after { content: " (click image to enlarge)"; color: #aaa; font-style: normal; }
+#lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 1000; cursor: zoom-out; padding: 2rem; }
+#lightbox.open { display: flex; align-items: center; justify-content: center; }
+#lightbox img { max-width: 96%; max-height: 96%; width: auto; height: auto; border-radius: 4px; box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
 .session-list { list-style: none; margin: 1rem 0 0 0; }
 .session-list li { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 0.9rem 1.2rem; margin-bottom: 0.6rem; }
 .session-list .label { font-size: 0.75rem; color: #777; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -237,5 +241,24 @@ years. <em>J Hand Surg Am.</em> 2007;32(7):1086-1106.</li>
 </ol>
 <footer>NYU Langone Orthopedic Surgery &amp; Plastic Surgery — Division of Hand Surgery</footer>
 </div>
+<div id="lightbox"><img alt="Enlarged figure"></div>
+<script>
+(function () {
+  var box = document.getElementById('lightbox');
+  var big = box.querySelector('img');
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.tagName === 'IMG' && t.closest('figure, p') && t !== big) {
+      big.src = t.src;
+      box.classList.add('open');
+    } else if (box.classList.contains('open')) {
+      box.classList.remove('open');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') box.classList.remove('open');
+  });
+})();
+</script>
 </body>
 </html>

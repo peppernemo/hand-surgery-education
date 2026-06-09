@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic Workflow — Dr. Barrera</title>
+<style>* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #1a1a2e; line-height: 1.55; }
+.container { max-width: 760px; margin: 0 auto; padding: 1.5rem 1.2rem 3rem; }
+.nav { font-size: 0.85rem; margin-bottom: 1rem; }
+.nav a { color: #0f3460; text-decoration: none; }
+.nav a:hover { text-decoration: underline; }
+header.page { border-bottom: 2px solid #16213e; padding-bottom: 0.8rem; margin-bottom: 1.5rem; }
+header.page h1 { font-size: 1.5rem; color: #16213e; margin-bottom: 0.3rem; }
+header.page .meta { color: #666; font-size: 0.9rem; }
+h2 { font-size: 1.15rem; color: #0f3460; margin: 1.8rem 0 0.5rem; padding-bottom: 0.2rem; border-bottom: 1px solid #ddd; }
+h3 { font-size: 1rem; color: #16213e; margin: 1.2rem 0 0.4rem; }
+p { margin: 0.6rem 0; }
+ul, ol { margin: 0.5rem 0 0.8rem 1.5rem; }
+li { margin: 0.3rem 0; }
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.88rem; }
+th, td { border: 1px solid #d8d8e0; padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
+th { background: #16213e; color: #fff; font-weight: 600; }
+tr:nth-child(even) td { background: #f5f5fa; }
+strong { color: #0f3460; }
+code { background: #f0f0f5; padding: 1px 5px; border-radius: 3px; font-size: 0.95em; color: #0f3460; font-weight: 600; }
+td code { font-size: 0.98rem; }
+.steps { list-style: none; margin: 1rem 0 0 0; counter-reset: step; }
+.steps > li { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem 1.2rem 1rem 3.2rem; margin-bottom: 0.8rem; position: relative; }
+.steps > li::before { counter-increment: step; content: counter(step); position: absolute; left: 1rem; top: 1rem; width: 1.6rem; height: 1.6rem; background: #16213e; color: #fff; border-radius: 50%; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.steps .title { font-weight: 600; color: #16213e; font-size: 1.02rem; margin-bottom: 0.2rem; }
+.steps .blurb { font-size: 0.9rem; color: #444; }
+.steps ul { margin: 0.4rem 0 0.2rem 1.3rem; }
+.callout { background: #fff8e1; border-left: 4px solid #f9a825; padding: 0.8rem 1rem; border-radius: 4px; margin: 1.2rem 0; font-size: 0.92rem; }
+.callout strong { color: #8a5b00; }
+.recipe { background: #e8f0fe; border-left: 4px solid #0f3460; padding: 0.8rem 1rem; border-radius: 4px; margin: 1rem 0; font-size: 0.95rem; }
+.recipe strong { color: #0f3460; }
+footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; color: #999; font-size: 0.78rem; text-align: center; }</style>
+</head>
+<body>
+<div class="container">
+<div class="nav"><a href="./">← All handouts</a></div>
+<header class="page">
+  <h1>Hand Clinic Workflow</h1>
+  <div class="meta">How the office day runs · Dr. Janos Barrera, NYU Langone / JHMC</div>
+</header>
+
+<p>Quick orientation for residents and fellows rotating through hand clinic. Work through each patient using the steps below, then use the reference tables for documentation and ordering.</p>
+
+<h2>Per-patient workflow</h2>
+<ol class="steps">
+  <li>
+    <div class="title">Staff every patient</div>
+    <div class="blurb">See the patient, then staff with the chief, fellow, or attending before finalizing the plan. No patient leaves without being staffed.</div>
+  </li>
+  <li>
+    <div class="title">Discuss operative cases</div>
+    <div class="blurb">Any patient who may be a surgical candidate gets reviewed with the fellow or attending before you commit to a plan or book a case.</div>
+  </li>
+  <li>
+    <div class="title">Steroid injections</div>
+    <div class="blurb">Prep the standard injection and document it (see recipe and documentation note below). Confirm the plan when you staff the patient.</div>
+  </li>
+  <li>
+    <div class="title">Enter the diagnosis &amp; sign the note</div>
+    <div class="blurb">Enter the diagnosis, then <strong>sign the note only — do not sign the encounter</strong>. Billing / level of service: OK to skip; the attending sets the charge.</div>
+  </li>
+</ol>
+
+<h2>Steroid injection recipe</h2>
+<div class="recipe">
+<strong>Standard steroid injection</strong><br>
+1 cc Kenalog 10 mg/mL + 0.5 cc 1% lidocaine
+</div>
+<div class="callout">
+<strong>Document every injection with <code>.procdoc</code>.</strong> Any injection you give must have the <code>.procdoc</code> phrase in the note — this captures the procedure, consent, site, and medication for billing and the legal record.
+</div>
+
+<h2>Clinic note dot phrases</h2>
+<table>
+<thead><tr><th>Phrase</th><th>Use for</th></tr></thead>
+<tbody>
+<tr><td><code>.HANDNPV</code></td><td>New patient visit</td></tr>
+<tr><td><code>.HANDFU</code></td><td>Established / follow-up visit</td></tr>
+<tr><td><code>.HANDPOSTOP</code></td><td>Post-op visit</td></tr>
+<tr><td><code>.procdoc</code></td><td>Procedure note — required for any injection given</td></tr>
+</tbody>
+</table>
+
+<h2>OT referral dot phrases</h2>
+<p>Hand-therapy referral phrases drop a protocol-specific OT order and instructions. Match the phrase to the diagnosis / repair:</p>
+<table>
+<thead><tr><th>Phrase</th><th>Protocol</th></tr></thead>
+<tbody>
+<tr><td><code>.JBOTTRIGGER</code></td><td>Trigger finger</td></tr>
+<tr><td><code>.JBOTCOMPRESSIVENEUROPATHY</code></td><td>Compressive neuropathy</td></tr>
+<tr><td><code>.JBOTFLEX</code></td><td>Flexor tendon repair rehab</td></tr>
+<tr><td><code>.JBOTEXT</code></td><td>Extensor tendon (finger) rehab</td></tr>
+<tr><td><code>.JBOTEPL</code></td><td>EPL repair rehab</td></tr>
+<tr><td><code>.JBOTFPL</code></td><td>FPL repair rehab</td></tr>
+<tr><td><code>.JBOTMALLET</code></td><td>Mallet finger</td></tr>
+<tr><td><code>.JBOTTFCC</code></td><td>TFCC</td></tr>
+<tr><td><code>.JBOTTOS</code></td><td>Thoracic outlet syndrome</td></tr>
+</tbody>
+</table>
+
+<h2>Order favorites — follow Dr. Barrera's preference list</h2>
+<p>Set this up once and you inherit all of Dr. Barrera's pre-built imaging, medication, lab, and OT-referral favorites:</p>
+<ol>
+  <li>Open the <strong>Order Preference List</strong> — the three-line (hamburger) button next to <strong>Add Order</strong>.</li>
+  <li>Click <strong>+ Follow Users</strong> (top right of the order search).</li>
+  <li>Add <strong>Barrera</strong>.</li>
+  <li>His favorites now appear under <strong>My Favorites</strong> — imaging, meds, labs, and the specific OT referrals above.</li>
+</ol>
+<div class="callout">
+<strong>What you get.</strong> Imaging (XR / MRI / US upper extremity), procedures (brace, EMG), the full set of OT and ortho referrals, common labs, and the standard hand-clinic medications — all pre-set so you don't build orders from scratch.
+</div>
+
+<footer>Maintained by Janos Barrera, MD · NYU Langone Orthopedic Surgery &amp; Plastic Surgery</footer>
+</div>
+</body>
+</html>

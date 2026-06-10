@@ -1,6 +1,6 @@
-# Hand Surgery Education
+# Hand Surgery Handbook
 
-Teaching handouts for hand surgery residents and fellows.
+Clinical workflow and teaching resources for hand surgery residents and fellows.
 
 **Dr. Janos Barrera** | NYU Langone Orthopedic Surgery & Plastic Surgery
 

@@ -1,4 +1,4 @@
-/* Lightweight client-side access gate for the Hand Surgery Education site.
+/* Lightweight client-side access gate for the Hand Surgery Handbook site.
    NOTE: This is a deterrent, not real security. The site is static (GitHub
    Pages), so a determined visitor can read the raw HTML. Do NOT put PHI or
    anything truly sensitive here. To change the password, update HASH below
@@ -16,7 +16,7 @@
   ov.setAttribute('style', 'position:fixed;inset:0;z-index:2147483647;background:#16213e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif;');
   ov.innerHTML =
     '<div style="background:#fff;border-radius:10px;padding:2rem 1.8rem;max-width:340px;width:90%;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.35);">' +
-      '<div style="font-size:1.2rem;font-weight:700;color:#16213e;margin-bottom:.25rem;">Hand Surgery Education</div>' +
+      '<div style="font-size:1.2rem;font-weight:700;color:#16213e;margin-bottom:.25rem;">Hand Surgery Handbook</div>' +
       '<div style="font-size:.85rem;color:#666;margin-bottom:1.3rem;">Access for NYU Ortho &amp; Plastic Surgery residents</div>' +
       '<input id="hse-pw" type="password" placeholder="Password" style="width:100%;padding:.6rem .8rem;font-size:1rem;border:1px solid #ccc;border-radius:6px;margin-bottom:.55rem;box-sizing:border-box;">' +
       '<div id="hse-err" style="color:#c0392b;font-size:.8rem;height:1rem;margin-bottom:.45rem;"></div>' +

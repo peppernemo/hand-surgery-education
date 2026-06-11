@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="/hand-surgery-education/auth.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search — Hand Surgery Handbook</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #1a1a2e; line-height: 1.55; }
+.container { max-width: 760px; margin: 0 auto; padding: 1.5rem 1.2rem 3rem; }
+.nav { font-size: 0.85rem; margin-bottom: 1rem; }
+.nav a { color: #0f3460; text-decoration: none; }
+.nav a:hover { text-decoration: underline; }
+header.page { border-bottom: 2px solid #16213e; padding-bottom: 0.8rem; margin-bottom: 1.2rem; }
+header.page h1 { font-size: 1.5rem; color: #16213e; }
+.searchbox { position: relative; margin: 0.4rem 0 0.6rem; }
+#q { width: 100%; font-size: 1.05rem; padding: 0.75rem 1rem; border: 2px solid #16213e; border-radius: 8px; outline: none; background: #fff; }
+#q:focus { border-color: #0f3460; box-shadow: 0 0 0 3px rgba(15,52,96,0.12); }
+.count { font-size: 0.82rem; color: #777; margin: 0.2rem 0 1rem; min-height: 1rem; }
+.result { display: block; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 0.7rem; text-decoration: none; color: inherit; transition: box-shadow 0.15s, border-color 0.15s; }
+.result:hover, .result.active { box-shadow: 0 2px 10px rgba(0,0,0,0.10); border-color: #0f3460; }
+.result .badge { display: inline-block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.4px; color: #fff; background: #16213e; padding: 0.1rem 0.45rem; border-radius: 4px; vertical-align: middle; }
+.result .badge.sess { background: #0f3460; margin-left: 0.3rem; }
+.result .rtitle { font-weight: 600; color: #16213e; font-size: 1rem; margin: 0.35rem 0 0.1rem; }
+.result .rtitle .crumb { color: #0f3460; font-weight: 600; }
+.result .snippet { font-size: 0.86rem; color: #555; }
+.result mark { background: #ffe89e; color: inherit; padding: 0 1px; border-radius: 2px; }
+.hint { color: #888; font-size: 0.9rem; background: #fff; border: 1px dashed #d8d8e0; border-radius: 8px; padding: 1rem 1.2rem; }
+.hint code { background: #f0f0f5; padding: 1px 5px; border-radius: 3px; }
+footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; color: #999; font-size: 0.78rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="nav"><a href="./">← Home</a> · <a href="review-guides/">Review Guides</a> · <a href="curriculum/">Curriculum</a></div>
+<header class="page"><h1>Search</h1></header>
+<div class="searchbox">
+  <input id="q" type="search" autocomplete="off" autofocus
+         placeholder="Search guides, curriculum, handouts… (e.g. Stener, leech, foveal, Coban)">
+</div>
+<div class="count" id="count"></div>
+<div id="results"></div>
+<div class="hint" id="hint">
+  Type to search across every review guide, curriculum page, and handout.
+  Results jump to the exact section. Tip: multiple words narrow the search
+  (all must match), e.g. <code>scaphoid vascularized</code>.
+</div>
+<footer>NYU Langone Orthopedic Surgery &amp; Plastic Surgery — Division of Hand Surgery</footer>
+</div>
+<script>
+(function () {
+  var idx = [], ready = false;
+  var qEl = document.getElementById('q');
+  var resEl = document.getElementById('results');
+  var countEl = document.getElementById('count');
+  var hintEl = document.getElementById('hint');
+  var MAX = 50;
+
+  fetch('search-index.json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      idx = data;
+      // Precompute a lowercase haystack per record.
+      idx.forEach(function (r) {
+        r._t = (r.title || '').toLowerCase();
+        r._h = (r.heading || '').toLowerCase();
+        r._b = (r.text || '').toLowerCase();
+        r._hay = r._t + ' ' + r._h + ' ' + r._b;
+      });
+      ready = true;
+      var pre = param('q');
+      if (pre) { qEl.value = pre; }
+      run();
+    })
+    .catch(function () {
+      countEl.textContent = 'Could not load the search index.';
+    });
+
+  function param(name) {
+    var m = new RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
+    return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+  }
+
+  function esc(s) {
+    return s.replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  function score(r, terms) {
+    var s = 0;
+    for (var i = 0; i < terms.length; i++) {
+      var t = terms[i];
+      if (r._hay.indexOf(t) === -1) return 0;           // AND: every term required
+      if (r._t.indexOf(t) !== -1) s += 8;               // title hit
+      if (r._h.indexOf(t) !== -1) s += 5;               // heading hit
+      var n = r._b.split(t).length - 1;                 // body frequency
+      s += Math.min(n, 4);
+    }
+    if (r.heading === '') s += 1;                        // slight nudge for page-level
+    return s;
+  }
+
+  function snippet(text, terms) {
+    if (!text) return '';
+    var low = text.toLowerCase(), at = -1;
+    for (var i = 0; i < terms.length; i++) {
+      var p = low.indexOf(terms[i]);
+      if (p !== -1 && (at === -1 || p < at)) at = p;
+    }
+    var start = at > 90 ? at - 80 : 0;
+    var frag = text.slice(start, start + 230);
+    if (start > 0) frag = '… ' + frag;
+    if (start + 230 < text.length) frag = frag + ' …';
+    var out = esc(frag);
+    terms.forEach(function (t) {
+      out = out.replace(new RegExp('(' + escRe(t) + ')', 'ig'), '<mark>$1</mark>');
+    });
+    return out;
+  }
+
+  function run() {
+    if (!ready) return;
+    var q = qEl.value.trim().toLowerCase();
+    var terms = q.split(/\s+/).filter(Boolean);
+    if (!terms.length) {
+      resEl.innerHTML = '';
+      countEl.textContent = '';
+      hintEl.style.display = '';
+      return;
+    }
+    hintEl.style.display = 'none';
+    var hits = [];
+    for (var i = 0; i < idx.length; i++) {
+      var sc = score(idx[i], terms);
+      if (sc > 0) hits.push([sc, idx[i]]);
+    }
+    hits.sort(function (a, b) { return b[0] - a[0]; });
+    var shown = hits.slice(0, MAX);
+    countEl.textContent = hits.length + (hits.length === 1 ? ' result' : ' results')
+      + (hits.length > MAX ? ' (showing ' + MAX + ')' : '');
+
+    var html = '';
+    shown.forEach(function (pair, i) {
+      var r = pair[1];
+      var crumb = r.heading ? ' <span class="crumb">› ' + esc(r.heading) + '</span>' : '';
+      html += '<a class="result' + (i === 0 ? ' active' : '') + '" href="' + esc(r.url) + '">'
+        + '<span class="badge">' + esc(r.type) + '</span>'
+        + (r.session ? '<span class="badge sess">' + esc(r.session) + '</span>' : '')
+        + '<div class="rtitle">' + esc(r.title) + crumb + '</div>'
+        + '<div class="snippet">' + snippet(r.text, terms) + '</div>'
+        + '</a>';
+    });
+    resEl.innerHTML = html;
+  }
+
+  var timer;
+  qEl.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(run, 110);
+  });
+  qEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      var first = resEl.querySelector('.result');
+      if (first) { window.location.href = first.getAttribute('href'); }
+    }
+  });
+})();
+</script>
+</body>
+</html>

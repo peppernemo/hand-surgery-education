@@ -50,6 +50,40 @@
         .handout-item:hover {
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+        .handout-item.featured {
+            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+            border-color: #0f3460;
+            padding: 1.6rem 1.5rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 4px 16px rgba(15,52,96,0.28);
+        }
+        .featured .handout-title {
+            color: #fff;
+            font-size: 1.25rem;
+        }
+        .featured .handout-subtitle {
+            color: #c9d4e8;
+            margin-top: 0.35rem;
+        }
+        .featured .btn {
+            background: #fff;
+            color: #16213e;
+        }
+        .featured .btn:hover {
+            background: #e8edf5;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.18);
+            color: #fff;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
         .handout-title {
             font-weight: 600;
             font-size: 1rem;
@@ -102,6 +136,14 @@
         </form>
 
         <ul class="handout-list">
+            <li class="handout-item featured">
+                <div>
+                    <span class="badge">Start here &middot; 8-week resident block</span>
+                    <div class="handout-title">JHMC Hand Curriculum</div>
+                    <div class="handout-subtitle">Self-paced reading + question sets across 4 sessions: exam &amp; soft-tissue, fractures, tendon/nerve, electives</div>
+                </div>
+                <a href="curriculum/" class="btn">Open</a>
+            </li>
             <li class="handout-item">
                 <div>
                     <div class="handout-title">Hand Clinic Workflow</div>
@@ -129,13 +171,6 @@
                     <div class="handout-subtitle">Flagging soft-tissue coverage needs early: what to photograph, when to text, and where CTA fits (JHMC)</div>
                 </div>
                 <a href="handouts/open-fracture-orthoplastics-protocol.html" class="btn">Open</a>
-            </li>
-            <li class="handout-item">
-                <div>
-                    <div class="handout-title">JHMC Hand Curriculum &mdash; 8-Week Block</div>
-                    <div class="handout-subtitle">Self-paced reading + question sets across 4 sessions: exam &amp; soft-tissue, fractures, tendon/nerve, electives</div>
-                </div>
-                <a href="curriculum/" class="btn">Open</a>
             </li>
             <li class="handout-item">
                 <div>

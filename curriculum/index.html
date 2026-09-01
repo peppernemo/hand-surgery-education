@@ -23,6 +23,7 @@ table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.8
 th, td { border: 1px solid #d8d8e0; padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
 th { background: #16213e; color: #fff; font-weight: 600; }
 tr:nth-child(even) td { background: #f5f5fa; }
+tr.now td { background: #fff8e1 !important; font-weight: 600; }
 hr { border: 0; border-top: 1px solid #ddd; margin: 1.5rem 0; }
 strong { color: #0f3460; }
 em { color: #444; }
@@ -37,13 +38,13 @@ details > summary strong { color: inherit; }
 .callout a { color: #0f3460; }
 .button { display: inline-block; background: #16213e; color: #fff !important; text-decoration: none; padding: 0.5rem 1.1rem; border-radius: 6px; font-size: 0.9rem; font-weight: 500; margin: 0.2rem 0.3rem 0.2rem 0; }
 .button:hover { background: #0f3460; }
-.session-list { list-style: none; margin: 1rem 0 0 0; }
-.session-list li { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 0.7rem; }
-.session-list .label { font-size: 0.75rem; color: #777; text-transform: uppercase; letter-spacing: 0.5px; }
-.session-list .title { font-weight: 600; color: #16213e; font-size: 1.02rem; margin: 0.15rem 0 0.3rem; }
-.session-list .title a { color: inherit; text-decoration: none; }
-.session-list .title a:hover { color: #0f3460; text-decoration: underline; }
-.session-list .blurb { font-size: 0.88rem; color: #555; }
+.hero { background: #16213e; color: #fff; border-radius: 10px; padding: 1.3rem 1.4rem; margin: 1rem 0; }
+.hero .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #9fb3d9; }
+.hero h2 { color: #fff; border: 0; margin: 0.2rem 0 0.4rem; font-size: 1.35rem; }
+.hero p { color: #cdd6ea; font-size: 0.92rem; margin: 0.3rem 0 0.8rem; }
+.hero a.button { background: #f9a825; color: #16213e !important; font-weight: 700; }
+.start { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 1rem 1.2rem; margin: 1rem 0; }
+.start .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
 footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; color: #999; font-size: 0.78rem; text-align: center; }</style>
 </head>
 <body>
@@ -51,80 +52,70 @@ footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; c
 <div class="nav"><a href="../">← All handouts</a></div>
 <header class="page">
   <h1>JHMC Hand Surgery Curriculum</h1>
-  <div class="meta">Weekly schedule · resident (7-week) and intern (4-week) tracks · Dr. Janos Barrera, NYU Langone</div>
+  <div class="meta">The 8-topic weekly wheel · whole service, same topic, every week · mapped to OITE hand categories</div>
 </header>
 
-<p><strong>Format.</strong> One theme per week. Each week has a small required core (review guides + at most one article), an encouraged boards tier, and an optional deep-dive library. The week closes with a 15&ndash;20 minute case check-in with Dr. Barrera &mdash; default slot: <strong>Friday after 6:00 AM rounds</strong>. You book it; grab him and say &ldquo;week N check-in.&rdquo;</p>
-
-<p>The core is sized to be genuinely doable in 1&ndash;2 hours a week on a busy rotation. If you read nothing else, read the core. Total required articles for the whole rotation: <strong>4 journal PDFs + 2 internal handouts.</strong></p>
-
-<div class="callout">
-<strong>Article PDFs.</strong> Required readings are bundled in a Google Drive folder (publisher copyright &mdash; not redistributable on this site).
-<br><br>
-<a class="button" href="https://drive.google.com/drive/folders/1lFrmHBaTOBHK0UrqYeMaGpw2xH4DTsli" target="_blank" rel="noopener">Open Drive bundle</a>
-<span style="font-size:0.85rem;color:#666;">Access on request &mdash; email Dr. Barrera if you don't already have it.</span>
+<div class="hero">
+  <div class="label">This week</div>
+  <h2 id="tw-title">…</h2>
+  <p id="tw-blurb"></p>
+  <a class="button" id="tw-link" href="#">Open this week's topic</a>
 </div>
 
-<h2>Intern track (4 weeks)</h2>
-<ul class="session-list">
-  <li>
-    <div class="label">Interns start here</div>
-    <div class="title"><a href="intern.html">Intern Track — 4-Week Schedule</a></div>
-    <div class="blurb">Exam &amp; consult survival · infections &amp; emergencies · fracture essentials · tendon &amp; nerve essentials. Two articles total.</div>
-  </li>
-</ul>
+<div class="start">
+  <div class="label">New on service?</div>
+  <strong><a href="start-here.html">Start Here: Hand Exam &amp; Consult Survival</a></strong> — read it in your first week, whatever week the wheel is on. Everything else: read the topic's guides, do the questions, show up Friday.
+</div>
 
-<h2>Resident track (7 weeks)</h2>
-<ul class="session-list">
-  <li>
-    <div class="label">Week 1</div>
-    <div class="title"><a href="week-1.html">Hand Exam &amp; Consult Survival</a></div>
-    <div class="blurb">The 10-minute systematic exam · FDS/FDP · EPL · intrinsics · sensory territories · splints</div>
-  </li>
-  <li>
-    <div class="label">Week 2</div>
-    <div class="title"><a href="week-2.html">Infections &amp; Soft-Tissue Emergencies</a></div>
-    <div class="blurb">FTS &amp; Kanavel · fight bite · compartment syndrome · high-pressure injection · nec fasc · fingertip</div>
-  </li>
-  <li>
-    <div class="label">Week 3</div>
-    <div class="title"><a href="week-3.html">Fractures I: The Wrist</a></div>
-    <div class="blurb">Distal radius parameters &amp; WRIST trial · scaphoid · occult fractures · perilunate</div>
-  </li>
-  <li>
-    <div class="label">Week 4</div>
-    <div class="title"><a href="week-4.html">Fractures II: The Hand</a></div>
-    <div class="blurb">Metacarpal &amp; phalangeal tolerances · rotation · Bennett/Rolando · PIP fracture-dislocation · UCL/Stener</div>
-  </li>
-  <li>
-    <div class="label">Week 5</div>
-    <div class="title"><a href="week-5.html">Tendon</a></div>
-    <div class="blurb">Flexor zones &amp; pulleys · Leddy · Doyle · mallet · early active motion · WALANT</div>
-  </li>
-  <li>
-    <div class="label">Week 6</div>
-    <div class="title"><a href="week-6.html">Nerve: Injury &amp; Compression</a></div>
-    <div class="blurb">Seddon/Sunderland · CTS-6 · cubital tunnel · AIN vs high median · repair &amp; recovery</div>
-  </li>
-  <li>
-    <div class="label">Week 7</div>
-    <div class="title"><a href="week-7.html">Electives &amp; Wrap-Up</a></div>
-    <div class="blurb">Trigger finger · De Quervain's · Dupuytren's · thumb CMC · ganglions · rotation debrief</div>
-  </li>
-</ul>
+<p><strong>The rhythm.</strong> One topic per week for the whole service. Read the guides (about an hour), do the questions on the topic page, run an <a href="https://www.orthobullets.com/hand" target="_blank" rel="noopener">Orthobullets</a> topic quiz, and close it out at the <strong>Friday 6:00 rounds group case</strong>: intern presents, PGY-2/3 runs the workup, senior defends the plan. The wheel repeats every 8 weeks, so any rotation sees the full cycle.</p>
 
-<h2>Deep-dive library</h2>
-<p>The former session pages hold the full article lists and extended question sets. Optional &mdash; nothing here is assigned.</p>
-<ul>
-  <li><a href="session-1.html">Library 1 — Exam &amp; Soft-Tissue Emergencies</a></li>
-  <li><a href="session-2.html">Library 2 — Fractures &amp; Dislocations</a></li>
-  <li><a href="session-3.html">Library 3 — Tendon &amp; Nerve Injuries</a></li>
-  <li><a href="session-4.html">Library 4 — Compressive Neuropathies &amp; Electives</a></li>
-</ul>
+<h2>The wheel</h2>
+<table id="wheel">
+  <thead><tr><th>#</th><th>Topic</th><th>OITE share</th></tr></thead>
+  <tbody>
+    <tr data-t="1"><td>1</td><td><a href="topic-1.html">Nerve I: Compression</a> — carpal tunnel, cubital tunnel, radial tunnel/PIN</td><td rowspan="2">19%</td></tr>
+    <tr data-t="2"><td>2</td><td><a href="topic-2.html">Nerve II: Injury, Plexus &amp; Transfers</a></td></tr>
+    <tr data-t="3"><td>3</td><td><a href="topic-3.html">Fractures I: The Wrist</a> — distal radius, scaphoid, perilunate</td><td rowspan="2">18%</td></tr>
+    <tr data-t="4"><td>4</td><td><a href="topic-4.html">Fractures II: The Hand</a> — metacarpal, phalangeal, PIP, UCL</td></tr>
+    <tr data-t="5"><td>5</td><td><a href="topic-5.html">Tendon</a> — flexor pulleys, extensor mechanism, trigger/De Quervain's</td><td>17%</td></tr>
+    <tr data-t="6"><td>6</td><td><a href="topic-6.html">Soft Tissue &amp; Vascular</a> — fingertip, replant, flaps</td><td>16%</td></tr>
+    <tr data-t="7"><td>7</td><td><a href="topic-7.html">Degenerative, Arthritis &amp; Dupuytren's</a> — SLAC, CMC, Kienböck's</td><td>14%</td></tr>
+    <tr data-t="8"><td>8</td><td><a href="topic-8.html">Infection &amp; Tumor</a> — FTS, fight bite, ganglion, GCT</td><td>15%</td></tr>
+  </tbody>
+</table>
+<p style="font-size:0.8rem;color:#888;">Weights from Trammell 2022, JAAOS Glob Res Rev: analysis of all 113 OITE hand questions, 2014-2019. Hand is ~7% of the OITE, and 58% of its questions are management vignettes.</p>
 
-<p><em>Supplemental reference (general, not assigned):</em> ASSH Handthology / Hand-e via institutional access.</p>
+<div class="callout">
+<strong>Article PDFs.</strong> One optional article per topic, in the Drive bundle folder <em>0 - Required Core</em>.
+<a class="button" href="https://drive.google.com/drive/folders/1lFrmHBaTOBHK0UrqYeMaGpw2xH4DTsli" target="_blank" rel="noopener">Open Drive bundle</a>
+<span style="font-size:0.85rem;color:#666;">Access on request — email Dr. Barrera.</span>
+</div>
+
+<p style="font-size:0.85rem;color:#666;">Going deeper: the <a href="../review-guides/">full review-guide library</a> (60 guides, all of hand surgery) and the former session pages (<a href="session-1.html">1</a> · <a href="session-2.html">2</a> · <a href="session-3.html">3</a> · <a href="session-4.html">4</a>) with the extended article lists. Nothing there is assigned.</p>
 
 <footer>Maintained by Janos Barrera, MD · NYU Langone Orthopedic Surgery &amp; Plastic Surgery</footer>
 </div>
+<script>
+(function () {
+  var topics = {
+    1: ["Nerve I: Compression", "Carpal tunnel, cubital tunnel, radial tunnel/PIN/Wartenberg, Guyon's. CTS is the single most-tested hand item on the OITE."],
+    2: ["Nerve II: Injury, Plexus & Transfers", "Seddon/Sunderland, repair timing, brachial plexus patterns, nerve and tendon transfer selection."],
+    3: ["Fractures I: The Wrist", "Distal radius parameters and the WRIST trial, scaphoid, occult fractures, perilunate injuries."],
+    4: ["Fractures II: The Hand", "Metacarpal and phalangeal tolerances, rotation, Bennett, PIP fracture-dislocations, UCL/Stener."],
+    5: ["Tendon", "Flexor zones and pulleys, Leddy, Doyle, mallet, trigger finger and De Quervain's."],
+    6: ["Soft Tissue & Vascular", "Fingertip management, replantation, flap selection, hypothenar hammer."],
+    7: ["Degenerative, Arthritis & Dupuytren's", "SLAC/SNAC staging, thumb CMC, Kienböck's, rheumatoid hand, Dupuytren's options."],
+    8: ["Infection & Tumor", "FTS and Kanavel, fight bite, compartment syndrome, nec fasc, ganglion, giant cell tumor."]
+  };
+  var anchor = new Date("2026-09-07T00:00:00");
+  var weeks = Math.floor((Date.now() - anchor.getTime()) / (7 * 24 * 3600 * 1000));
+  var t = ((weeks % 8) + 8) % 8 + 1;
+  document.getElementById("tw-title").textContent = "Topic " + t + " · " + topics[t][0];
+  document.getElementById("tw-blurb").textContent = topics[t][1];
+  document.getElementById("tw-link").href = "topic-" + t + ".html";
+  var row = document.querySelector('#wheel tr[data-t="' + t + '"]');
+  if (row) row.className = "now";
+})();
+</script>
 </body>
 </html>
